@@ -1,0 +1,677 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100vh;
+}
+
+/* Swipe Container */
+.swipe-container {
+    display: flex;
+    width: 200%;
+    height: 100vh;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.swipe-container.swiped {
+    transform: translateX(-50%);
+}
+
+/* View Container */
+.view {
+    width: 50%;
+    height: 100vh;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ========== LEGO VIEW ========== */
+
+/* Header LEGO */
+.header-lego {
+    background-color: #FFD700;
+    width: 100%;
+    padding: 15px 20px;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* LEGO Logo */
+.lego-logo {
+    width: 80px;
+    height: 80px;
+    display: block;
+    object-fit: contain;
+}
+
+/* Navigation */
+.navigation {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+    padding: 5px 0;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+/* Search Bar */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 200px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: #666;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #E60012;
+    box-shadow: 0 0 0 3px rgba(230, 0, 18, 0.1);
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+/* Main Content */
+.main-content {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 110px);
+    overflow: hidden;
+}
+
+/* Background Container */
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* QR Code Container LEGO */
+.qr-container-lego {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-border-lego {
+    position: relative;
+    padding: 16px;
+    background: #FFD700;
+    border: 2px solid #000;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.qr-border-lego::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 14px solid #E60012;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.qr-border-lego::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    border: 5px solid #FFD700;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+.qr-code {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 3px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========== STARBUCKS VIEW ========== */
+
+/* Header Starbucks */
+.header-starbucks {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 15px 20px;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.starbucks-logo {
+    width: 60px;
+    height: 60px;
+    display: block;
+    object-fit: contain;
+}
+
+.header-starbucks .nav-link {
+    color: #000;
+}
+
+.store-locator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.pin-icon {
+    color: #000;
+    flex-shrink: 0;
+}
+
+/* QR Code Container Starbucks */
+.qr-container-starbucks {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-border-starbucks {
+    position: relative;
+    padding: 20px;
+    background: #ffffff;
+    border: 10px solid #00704A;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.qr-border-starbucks .qr-code {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Swipe Indicators */
+.swipe-indicators {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.indicator.active {
+    background-color: #fff;
+    transform: scale(1.2);
+}
+
+/* Responsive Design */
+
+/* Tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .header-lego, .header-starbucks {
+        padding: 14px 18px;
+    }
+
+    .header-container {
+        padding: 0 10px;
+        gap: 15px;
+    }
+
+    .lego-logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .starbucks-logo {
+        width: 55px;
+        height: 55px;
+    }
+
+    .navigation {
+        gap: 25px;
+    }
+
+    .nav-link {
+        font-size: 15px;
+        letter-spacing: 0.5px;
+    }
+
+    .search-container {
+        min-width: 180px;
+    }
+
+    .search-input {
+        padding: 9px 14px 9px 38px;
+        font-size: 14px;
+    }
+
+    .main-content {
+        height: calc(100vh - 98px);
+    }
+
+    .qr-container-lego {
+        right: 6%;
+    }
+
+    .qr-container-starbucks {
+        left: 6%;
+    }
+
+    .qr-code {
+        width: 190px;
+        height: 190px;
+    }
+
+    .qr-border-lego {
+        padding: 14px;
+    }
+
+    .qr-border-lego::before {
+        border-width: 12px;
+    }
+
+    .qr-border-lego::after {
+        border-width: 4px;
+        top: 14px;
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .qr-border-starbucks {
+        padding: 18px;
+        border-width: 8px;
+    }
+}
+
+/* Tablets Portrait */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .qr-container-lego {
+        right: 5%;
+    }
+
+    .qr-container-starbucks {
+        left: 5%;
+    }
+
+    .qr-code {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* Tablets Landscape */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .header-lego, .header-starbucks {
+        padding: 12px 18px;
+    }
+
+    .main-content {
+        height: calc(100vh - 94px);
+    }
+
+    .qr-container-lego {
+        right: 7%;
+    }
+
+    .qr-container-starbucks {
+        left: 7%;
+    }
+
+    .qr-code {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Small Tablets and Large Phones (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .header-lego, .header-starbucks {
+        padding: 13px 16px;
+    }
+
+    .header-container {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .lego-logo {
+        width: 65px;
+        height: 65px;
+    }
+
+    .starbucks-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .navigation {
+        gap: 18px;
+        order: 2;
+        width: auto;
+        flex: 0 1 auto;
+    }
+
+    .nav-link {
+        font-size: 13px;
+    }
+
+    .search-container {
+        order: 3;
+        width: 100%;
+        min-width: unset;
+    }
+
+    .qr-container-lego {
+        right: 4%;
+    }
+
+    .qr-container-starbucks {
+        left: 4%;
+    }
+
+    .qr-code {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+/* Mobile Devices (up to 767px) */
+@media (max-width: 767px) {
+    .header-lego, .header-starbucks {
+        padding: 12px 15px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .logo {
+        align-self: flex-start;
+    }
+
+    .lego-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    .starbucks-logo {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
+
+    .navigation {
+        justify-content: flex-start;
+        gap: 15px;
+        order: 3;
+        width: 100%;
+    }
+
+    .nav-link {
+        font-size: 13px;
+    }
+
+    .search-container {
+        order: 2;
+        width: 100%;
+        min-width: unset;
+    }
+
+    .store-locator {
+        order: 4;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .qr-container-lego {
+        right: 5%;
+    }
+
+    .qr-container-starbucks {
+        left: 5%;
+    }
+
+    .qr-code {
+        width: 150px;
+        height: 150px;
+    }
+
+    .qr-border-lego {
+        padding: 10px;
+    }
+
+    .qr-border-lego::before {
+        border-width: 10px;
+    }
+
+    .qr-border-lego::after {
+        border-width: 4px;
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .qr-border-starbucks {
+        padding: 15px;
+        border-width: 8px;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .header-lego, .header-starbucks {
+        padding: 10px 12px;
+    }
+
+    .lego-logo {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
+
+    .starbucks-logo {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+    }
+
+    .navigation {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .search-input {
+        padding: 8px 12px 8px 35px;
+        font-size: 13px;
+    }
+
+    .search-icon {
+        width: 18px;
+        height: 18px;
+        left: 10px;
+    }
+
+    .qr-container-lego {
+        right: 3%;
+    }
+
+    .qr-container-starbucks {
+        left: 3%;
+    }
+
+    .qr-code {
+        width: 120px;
+        height: 120px;
+    }
+
+    .qr-border-lego {
+        padding: 8px;
+        border-width: 1.5px;
+    }
+
+    .qr-border-lego::before {
+        border-width: 8px;
+        top: 1.5px;
+        left: 1.5px;
+        right: 1.5px;
+        bottom: 1.5px;
+    }
+
+    .qr-border-lego::after {
+        border-width: 3px;
+        top: 9.5px;
+        left: 9.5px;
+        right: 9.5px;
+        bottom: 9.5px;
+    }
+
+    .qr-border-starbucks {
+        padding: 12px;
+        border-width: 6px;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+    .main-content {
+        height: calc(100vh - 90px);
+    }
+
+    .qr-container-lego {
+        right: 3%;
+    }
+
+    .qr-container-starbucks {
+        left: 3%;
+    }
+
+    .qr-code {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1400px) {
+    .qr-code {
+        width: 220px;
+        height: 220px;
+    }
+
+    .qr-container-lego {
+        right: 12%;
+    }
+
+    .qr-container-starbucks {
+        left: 12%;
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Pages</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Swipe Container -->
+    <div class="swipe-container" id="swipeContainer">
+        <!-- Vista 1: LEGO -->
+        <div class="view view-lego active" id="viewLego">
+            <!-- Header LEGO -->
+            <header class="header header-lego">
+                <div class="header-container">
+                    <!-- Logo LEGO -->
+                    <div class="logo">
+                        <img src="images/brand-lego.svg" alt="LEGO" class="lego-logo">
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav class="navigation">
+                        <a href="#" class="nav-link">COMPRAR</a>
+                        <a href="#" class="nav-link">DESCUBRIR</a>
+                        <a href="#" class="nav-link">AYUDA</a>
+                    </nav>
+
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Search">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content LEGO -->
+            <main class="main-content">
+                <!-- Background Image Container -->
+                <div class="background-container">
+                    <img src="images/background.jpg" alt="LEGO Landscape" class="background-image">
+                </div>
+
+                <!-- QR Code Container -->
+                <div class="qr-container qr-container-lego">
+                    <div class="qr-border qr-border-lego">
+                        <img src="images/qr-code.png" alt="QR Code" class="qr-code">
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Vista 2: Starbucks -->
+        <div class="view view-starbucks" id="viewStarbucks">
+            <!-- Header Starbucks -->
+            <header class="header header-starbucks">
+                <div class="header-container">
+                    <!-- Logo Starbucks -->
+                    <div class="logo">
+                        <img src="images/Starbucks_Logo.png" alt="Starbucks" class="starbucks-logo">
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav class="navigation">
+                        <a href="#" class="nav-link">MENÚ</a>
+                        <a href="#" class="nav-link">CAFÉ</a>
+                        <a href="#" class="nav-link">EXPERIENCIA STARBUCKS</a>
+                    </nav>
+
+                    <!-- Store Locator -->
+                    <div class="store-locator">
+                        <svg class="pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+                        </svg>
+                        <a href="#" class="nav-link">LOCALIZAR TIENDA</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Starbucks -->
+            <main class="main-content">
+                <!-- Background Image Container -->
+                <div class="background-container">
+                    <img src="images/backgroundStarbucks.jpg" alt="Starbucks Coffee" class="background-image">
+                </div>
+
+                <!-- QR Code Container -->
+                <div class="qr-container qr-container-starbucks">
+                    <div class="qr-border qr-border-starbucks">
+                        <img src="images/qr-code.png" alt="QR Code" class="qr-code">
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Swipe Indicators -->
+    <div class="swipe-indicators">
+        <span class="indicator active" data-view="0"></span>
+        <span class="indicator" data-view="1"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
