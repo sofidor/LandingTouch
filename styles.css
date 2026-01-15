@@ -414,7 +414,7 @@ body {
 /* QR Code Container Falabella */
 .qr-container-falabella {
     position: absolute;
-    bottom: 10%;
+    bottom: 20%;
     left: 5%;
     z-index: 10;
     display: flex;
@@ -764,7 +764,7 @@ body {
 
     .qr-container-falabella {
         left: 6%;
-        bottom: 12%;
+        bottom: 22%;
     }
 
     .qr-container-nike {

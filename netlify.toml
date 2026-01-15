@@ -1,0 +1,10 @@
+[build]
+  # Netlify no necesita un proceso de build para sitios estáticos
+  # Solo necesita publicar el directorio raíz
+  publish = "."
+
+[[redirects]]
+  # Redirigir todas las rutas a index.html para SPA
+  from = "/*"
+  to = "/index.html"
+  status = 200
