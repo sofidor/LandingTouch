@@ -14,11 +14,11 @@ let startTime = 0;
 let touchId = null;
 
 // Swipe threshold optimized for tablets (minimum distance to trigger swipe)
-const SWIPE_THRESHOLD = 80; // Increased for better tablet experience
+const SWIPE_THRESHOLD = 60; // Minimum distance in pixels to trigger swipe
 // Minimum velocity for fast swipe (px/ms)
-const VELOCITY_THRESHOLD = 0.2; // Lower threshold for easier swiping
+const VELOCITY_THRESHOLD = 0.2; // Velocity threshold for quick swipes
 // Minimum swipe percentage to trigger change
-const SWIPE_PERCENTAGE = 0.15; // 15% of screen width
+const SWIPE_PERCENTAGE = 0.15; // 15% of screen width to trigger swipe
 
 // Initialize
 function init() {
@@ -124,6 +124,8 @@ function handleMove(e) {
     const deltaX = currentX - startX;
     const deltaY = clientY - startY;
     const screenWidth = window.innerWidth;
+    // Calculate translateX: current position + swipe distance as percentage
+    // Container is 600% wide, so movement should be proportional
     const translateX = -(currentView * viewWidth) + (deltaX / screenWidth) * 100;
     
     // Prevent default scrolling - allow horizontal swipe, prevent vertical scroll
@@ -158,7 +160,7 @@ function handleEnd(e) {
     isDragging = false;
     touchId = null;
     swipeContainer.style.cursor = '';
-    swipeContainer.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    swipeContainer.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     
     const deltaX = currentX - startX;
     const deltaTime = Date.now() - startTime;
@@ -167,7 +169,7 @@ function handleEnd(e) {
     const swipePercentage = Math.abs(deltaX / screenWidth);
     
     // Determine if we should change view
-    // Check both distance and velocity, or percentage of screen
+    // More lenient thresholds for smoother, slower movement
     const shouldSwipe = Math.abs(deltaX) > SWIPE_THRESHOLD || 
                        velocity > VELOCITY_THRESHOLD || 
                        swipePercentage > SWIPE_PERCENTAGE;
