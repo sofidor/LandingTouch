@@ -2,7 +2,8 @@
 const swipeContainer = document.getElementById('swipeContainer');
 const indicators = document.querySelectorAll('.indicator');
 let currentView = 0;
-const totalViews = 5;
+const totalViews = 6;
+const viewWidth = 100 / totalViews; // 16.67%
 
 // Touch/Mouse events
 let startX = 0;
@@ -123,7 +124,7 @@ function handleMove(e) {
     const deltaX = currentX - startX;
     const deltaY = clientY - startY;
     const screenWidth = window.innerWidth;
-    const translateX = -(currentView * 20) + (deltaX / screenWidth) * 20;
+    const translateX = -(currentView * viewWidth) + (deltaX / screenWidth) * 100;
     
     // Prevent default scrolling - allow horizontal swipe, prevent vertical scroll
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
@@ -135,14 +136,15 @@ function handleMove(e) {
     }
     
     // Limit translation with elastic effect
+    const maxTranslate = -(totalViews - 1) * viewWidth; // -83.33%
     if (translateX > 0) {
         // Elastic effect when trying to swipe past first view
         const resistance = Math.min(translateX * 0.3, 5);
         swipeContainer.style.transform = `translateX(${resistance}%)`;
-    } else if (translateX < -80) {
+    } else if (translateX < maxTranslate) {
         // Elastic effect when trying to swipe past last view
-        const overSwipe = translateX + 80;
-        const resistance = -80 + (overSwipe * 0.3);
+        const overSwipe = translateX - maxTranslate;
+        const resistance = maxTranslate + (overSwipe * 0.3);
         swipeContainer.style.transform = `translateX(${resistance}%)`;
     } else {
         swipeContainer.style.transform = `translateX(${translateX}%)`;
@@ -192,7 +194,7 @@ function goToView(viewIndex) {
     if (viewIndex < 0 || viewIndex >= totalViews) return;
     
     currentView = viewIndex;
-    const translateX = -(currentView * 20);
+    const translateX = -(currentView * viewWidth);
     swipeContainer.style.transform = `translateX(${translateX}%)`;
     updateIndicators();
 }

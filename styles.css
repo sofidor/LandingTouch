@@ -13,12 +13,22 @@ body {
     position: fixed;
     width: 100%;
     touch-action: pan-x;
+    background-color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 /* Swipe Container */
 .swipe-container {
     display: flex;
-    width: 500%;
+    width: 600%;
     height: 100vh;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
@@ -31,24 +41,28 @@ body {
 }
 
 .swipe-container.swiped {
-    transform: translateX(-20%);
+    transform: translateX(-16.67%);
 }
 
 .swipe-container.swiped-twice {
-    transform: translateX(-40%);
+    transform: translateX(-33.33%);
 }
 
 .swipe-container.swiped-thrice {
-    transform: translateX(-60%);
+    transform: translateX(-50%);
 }
 
 .swipe-container.swiped-four {
-    transform: translateX(-80%);
+    transform: translateX(-66.67%);
+}
+
+.swipe-container.swiped-five {
+    transform: translateX(-83.33%);
 }
 
 /* View Container */
 .view {
-    width: 20%;
+    width: 16.67%;
     height: 100vh;
     flex-shrink: 0;
     position: relative;
@@ -56,6 +70,98 @@ body {
     touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
 }
+
+/* ========== WHATSAPP VIEW ========== */
+
+/* Main Content WhatsApp */
+.main-content-whatsapp {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+}
+
+.view-whatsapp {
+    background-color: #1a1a1a;
+}
+
+.view-whatsapp .background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.view-whatsapp .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transform: scale(1.1);
+    min-width: 110%;
+    min-height: 110%;
+}
+
+/* QR Code Container WhatsApp */
+.qr-container-whatsapp {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-border-whatsapp {
+    position: relative;
+    padding: 28px;
+    background: #E0612D;
+    border-radius: 35px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.qr-border-whatsapp .qr-code {
+    display: block;
+    width: 280px;
+    height: 280px;
+    background-color: #fff;
+    border-radius: 12px;
+    position: relative;
+    z-index: 2;
+    object-fit: contain;
+}
+
+/* Logo Container WhatsApp */
+.logo-container-whatsapp {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.joy-agency-logo {
+    max-width: 350px;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
 
 /* ========== LEGO VIEW ========== */
 
@@ -156,6 +262,35 @@ body {
     overflow: hidden;
 }
 
+/* Remove any borders or lines from Starbucks, Nike and Samsung views */
+.view-starbucks .main-content,
+.view-nike .main-content,
+.view-samsung .main-content {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+.view-starbucks,
+.view-nike,
+.view-samsung {
+    border: none !important;
+    border-bottom: none !important;
+}
+
+.view-starbucks *,
+.view-samsung * {
+    border-bottom: none !important;
+}
+
+.view-starbucks header::after,
+.view-starbucks header::before,
+.view-samsung header::after,
+.view-samsung header::before {
+    display: none !important;
+    content: none !important;
+}
+
 /* Background Container */
 .background-container {
     position: absolute;
@@ -241,7 +376,14 @@ body {
     padding: 15px 20px;
     position: relative;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.header-starbucks .header-container {
+    border: none;
+    border-bottom: none;
 }
 
 .starbucks-logo {
@@ -450,7 +592,6 @@ body {
     padding: 15px 20px 0;
     position: relative;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .nike-logo {
@@ -485,14 +626,7 @@ body {
 
 /* Active Indicator for Nike */
 .nav-indicator {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    width: 80px;
-    background-color: #E60012;
-    transition: transform 0.3s ease;
-    transform: translateX(0);
+    display: none;
 }
 
 .header-nike .search-container {
@@ -572,7 +706,14 @@ body {
     padding: 15px 20px;
     position: relative;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.header-samsung .header-container {
+    border: none;
+    border-bottom: none;
 }
 
 .samsung-logo {
@@ -1054,6 +1195,27 @@ body {
         height: 150px;
     }
 
+    .qr-container-whatsapp {
+        top: 38%;
+    }
+
+    .qr-border-whatsapp {
+        padding: 16px;
+    }
+
+    .qr-border-whatsapp .qr-code {
+        width: 180px;
+        height: 180px;
+    }
+
+    .logo-container-whatsapp {
+        top: 62%;
+    }
+
+    .joy-agency-logo {
+        max-width: 250px;
+    }
+
     .qr-border-lego {
         padding: 10px;
     }
@@ -1127,6 +1289,28 @@ body {
         height: 120px;
     }
 
+    .qr-container-whatsapp {
+        top: 35%;
+    }
+
+    .qr-border-whatsapp {
+        padding: 12px;
+        border-radius: 25px;
+    }
+
+    .qr-border-whatsapp .qr-code {
+        width: 140px;
+        height: 140px;
+    }
+
+    .logo-container-whatsapp {
+        top: 60%;
+    }
+
+    .joy-agency-logo {
+        max-width: 200px;
+    }
+
     .qr-border-lego {
         padding: 8px;
         border-width: 1.5px;
@@ -1171,6 +1355,23 @@ body {
     .qr-code {
         width: 140px;
         height: 140px;
+    }
+
+    .qr-container-whatsapp {
+        top: 38%;
+    }
+
+    .qr-border-whatsapp .qr-code {
+        width: 160px;
+        height: 160px;
+    }
+
+    .logo-container-whatsapp {
+        top: 63%;
+    }
+
+    .joy-agency-logo {
+        max-width: 220px;
     }
 }
 

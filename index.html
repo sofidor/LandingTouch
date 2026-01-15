@@ -9,8 +9,31 @@
 <body>
     <!-- Swipe Container -->
     <div class="swipe-container" id="swipeContainer">
+        <!-- Vista 0: WhatsApp -->
+        <div class="view view-whatsapp active" id="viewWhatsapp">
+            <!-- Main Content WhatsApp -->
+            <main class="main-content main-content-whatsapp">
+                <!-- Background Image Container -->
+                <div class="background-container">
+                    <img src="images/Landing-07.jpg" alt="Landing Background" class="background-image">
+                </div>
+
+                <!-- QR Code Container WhatsApp -->
+                <div class="qr-container qr-container-whatsapp">
+                    <div class="qr-border qr-border-whatsapp">
+                        <img src="images/wppNumero.jpeg" alt="WhatsApp QR Code" class="qr-code">
+                    </div>
+                </div>
+
+                <!-- Logo Container -->
+                <div class="logo-container-whatsapp">
+                    <img src="images/JoyAgency_Logo_Alternativas-04.png" alt="Joy Agency Logo" class="joy-agency-logo">
+                </div>
+            </main>
+        </div>
+
         <!-- Vista 1: LEGO -->
-        <div class="view view-lego active" id="viewLego">
+        <div class="view view-lego" id="viewLego">
             <!-- Header LEGO -->
             <header class="header header-lego">
                 <div class="header-container">
@@ -254,6 +277,7 @@
         <span class="indicator" data-view="2"></span>
         <span class="indicator" data-view="3"></span>
         <span class="indicator" data-view="4"></span>
+        <span class="indicator" data-view="5"></span>
     </div>
 
     <script src="script.js"></script>
