@@ -2,10 +2,11 @@
 const swipeContainer = document.getElementById('swipeContainer');
 const indicators = document.querySelectorAll('.indicator');
 let currentView = 0;
-const totalViews = 2;
+const totalViews = 5;
 
 // Touch/Mouse events
 let startX = 0;
+let startY = 0;
 let currentX = 0;
 let isDragging = false;
 let startTime = 0;
@@ -29,8 +30,8 @@ function addEventListeners() {
     // Touch events - optimized for tablets
     swipeContainer.addEventListener('touchstart', handleStart, { passive: false });
     swipeContainer.addEventListener('touchmove', handleMove, { passive: false });
-    swipeContainer.addEventListener('touchend', handleEnd, { passive: true });
-    swipeContainer.addEventListener('touchcancel', handleEnd, { passive: true });
+    swipeContainer.addEventListener('touchend', handleEnd, { passive: false });
+    swipeContainer.addEventListener('touchcancel', handleEnd, { passive: false });
 
     // Mouse events (for desktop testing)
     swipeContainer.addEventListener('mousedown', handleStart);
@@ -38,12 +39,21 @@ function addEventListeners() {
     swipeContainer.addEventListener('mouseup', handleEnd);
     swipeContainer.addEventListener('mouseleave', handleEnd);
 
-    // Prevent default touch behavior on container
-    swipeContainer.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
-            // Allow single touch for swiping
+    // Prevent default scroll behavior globally - only prevent vertical scrolling
+    // Allow horizontal swipes in the swipe container
+    document.addEventListener('touchmove', (e) => {
+        // If it's inside the swipe container and we're dragging, let handleMove handle it
+        if (e.target.closest('.swipe-container') && isDragging) {
+            return; // Let handleMove prevent default if needed
         }
-    }, { passive: true });
+        // Otherwise prevent all scrolling
+        e.preventDefault();
+    }, { passive: false });
+
+    // Prevent scroll on wheel
+    document.addEventListener('wheel', (e) => {
+        e.preventDefault();
+    }, { passive: false });
 
     // Indicator clicks
     indicators.forEach((indicator, index) => {
@@ -71,8 +81,10 @@ function handleStart(e) {
     
     const touch = e.touches ? e.touches[0] : null;
     const clientX = touch ? touch.clientX : e.clientX;
+    const clientY = touch ? touch.clientY : e.clientY;
     
     startX = clientX;
+    startY = clientY;
     currentX = clientX;
     isDragging = true;
     startTime = Date.now();
@@ -105,14 +117,20 @@ function handleMove(e) {
     }
     
     const clientX = touch ? touch.clientX : e.clientX;
+    const clientY = touch ? touch.clientY : e.clientY;
     currentX = clientX;
     
     const deltaX = currentX - startX;
+    const deltaY = clientY - startY;
     const screenWidth = window.innerWidth;
-    const translateX = -(currentView * 50) + (deltaX / screenWidth) * 50;
+    const translateX = -(currentView * 20) + (deltaX / screenWidth) * 20;
     
-    // Prevent default scrolling while swiping
-    if (Math.abs(deltaX) > 10) {
+    // Prevent default scrolling - allow horizontal swipe, prevent vertical scroll
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal movement - allow it and prevent default to stop scrolling
+        e.preventDefault();
+    } else if (Math.abs(deltaY) > 10) {
+        // Vertical movement - prevent it
         e.preventDefault();
     }
     
@@ -121,10 +139,10 @@ function handleMove(e) {
         // Elastic effect when trying to swipe past first view
         const resistance = Math.min(translateX * 0.3, 5);
         swipeContainer.style.transform = `translateX(${resistance}%)`;
-    } else if (translateX < -50) {
+    } else if (translateX < -80) {
         // Elastic effect when trying to swipe past last view
-        const overSwipe = translateX + 50;
-        const resistance = -50 + (overSwipe * 0.3);
+        const overSwipe = translateX + 80;
+        const resistance = -80 + (overSwipe * 0.3);
         swipeContainer.style.transform = `translateX(${resistance}%)`;
     } else {
         swipeContainer.style.transform = `translateX(${translateX}%)`;
@@ -174,7 +192,7 @@ function goToView(viewIndex) {
     if (viewIndex < 0 || viewIndex >= totalViews) return;
     
     currentView = viewIndex;
-    const translateX = -(currentView * 50);
+    const translateX = -(currentView * 20);
     swipeContainer.style.transform = `translateX(${translateX}%)`;
     updateIndicators();
 }

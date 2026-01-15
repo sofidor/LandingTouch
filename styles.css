@@ -10,16 +10,19 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
     height: 100vh;
+    position: fixed;
+    width: 100%;
+    touch-action: pan-x;
 }
 
 /* Swipe Container */
 .swipe-container {
     display: flex;
-    width: 200%;
+    width: 500%;
     height: 100vh;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
-    touch-action: pan-y pinch-zoom;
+    touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
     user-select: none;
     -webkit-user-select: none;
@@ -28,17 +31,29 @@ body {
 }
 
 .swipe-container.swiped {
-    transform: translateX(-50%);
+    transform: translateX(-20%);
+}
+
+.swipe-container.swiped-twice {
+    transform: translateX(-40%);
+}
+
+.swipe-container.swiped-thrice {
+    transform: translateX(-60%);
+}
+
+.swipe-container.swiped-four {
+    transform: translateX(-80%);
 }
 
 /* View Container */
 .view {
-    width: 50%;
+    width: 20%;
     height: 100vh;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    touch-action: pan-y pinch-zoom;
+    touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -156,6 +171,10 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.view-nike .background-image {
+    object-position: center center;
 }
 
 /* QR Code Container LEGO */
@@ -279,6 +298,370 @@ body {
     z-index: 2;
 }
 
+/* ========== FALABELLA VIEW ========== */
+
+/* Header Falabella */
+.header-falabella {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 15px 20px 0;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.logo-menu-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #00A335;
+}
+
+.menu-icon {
+    color: #00A335;
+}
+
+.menu-text {
+    font-weight: 600;
+    font-size: 16px;
+    color: #00A335;
+    text-transform: uppercase;
+}
+
+.falabella-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.header-falabella .header-container {
+    border-bottom: 2px solid #00A335;
+    padding-bottom: 15px;
+}
+
+.header-falabella .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 200px;
+}
+
+.header-falabella .search-icon {
+    position: absolute;
+    left: 12px;
+    color: #666;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.header-falabella .search-input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-falabella .search-input:focus {
+    border-color: #00A335;
+    box-shadow: 0 0 0 3px rgba(0, 163, 53, 0.1);
+}
+
+.header-falabella .search-input::placeholder {
+    color: #999;
+}
+
+/* Secondary Navigation Falabella */
+.secondary-nav {
+    display: flex;
+    gap: 25px;
+    padding: 12px 20px;
+    background-color: #ffffff;
+    border-bottom: 2px solid #00A335;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.secondary-nav-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.secondary-nav-link:hover {
+    color: #00A335;
+}
+
+/* QR Code Container Falabella */
+.qr-container-falabella {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-border-falabella {
+    position: relative;
+    padding: 16px;
+    background: #BFFF00;
+    border: 3px solid #BFFF00;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.qr-border-falabella .qr-code {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========== NIKE VIEW ========== */
+
+/* Header Nike */
+.header-nike {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 15px 20px 0;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nike-logo {
+    height: 70px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.header-nike .nav-link-nike {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.header-nike .nav-link-nike:hover {
+    color: #666;
+}
+
+.header-nike .nav-link-nike.active {
+    color: #000;
+    font-weight: 600;
+}
+
+.header-nike .header-container {
+    padding-bottom: 10px;
+}
+
+/* Active Indicator for Nike */
+.nav-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 80px;
+    background-color: #E60012;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+}
+
+.header-nike .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 200px;
+}
+
+.header-nike .search-icon {
+    position: absolute;
+    left: 12px;
+    color: #666;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.header-nike .search-input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.header-nike .search-input:focus {
+    border-color: #000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.header-nike .search-input::placeholder {
+    color: #999;
+}
+
+/* QR Code Container Nike */
+.qr-container-nike {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-border-nike {
+    position: relative;
+    padding: 12px;
+    background: #ffffff;
+    border: 2px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.qr-border-nike .qr-code {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========== SAMSUNG VIEW ========== */
+
+/* Header Samsung */
+.header-samsung {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 15px 20px;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.samsung-logo {
+    height: 30px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.header-samsung .nav-link-samsung {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.header-samsung .nav-link-samsung:hover {
+    color: #1428A0;
+}
+
+.header-samsung .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 200px;
+}
+
+.header-samsung .search-icon {
+    position: absolute;
+    left: 12px;
+    color: #666;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.header-samsung .search-input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.header-samsung .search-input:focus {
+    border-color: #1428A0;
+    box-shadow: 0 0 0 3px rgba(20, 40, 160, 0.1);
+    background-color: #fff;
+}
+
+.header-samsung .search-input::placeholder {
+    color: #999;
+}
+
+/* QR Code Container Samsung */
+.qr-container-samsung {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-border-samsung {
+    position: relative;
+    padding: 12px;
+    background: #ffffff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.qr-border-samsung .qr-code {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: relative;
+    z-index: 2;
+}
+
 /* Swipe Indicators */
 .swipe-indicators {
     position: fixed;
@@ -308,7 +691,7 @@ body {
 
 /* Tablets (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
-    .header-lego, .header-starbucks {
+    .header-lego, .header-starbucks, .header-falabella, .header-nike, .header-samsung {
         padding: 16px 24px;
     }
 
@@ -329,6 +712,18 @@ body {
         width: 58px;
         height: 58px;
         flex-shrink: 0;
+    }
+
+    .falabella-logo {
+        height: 38px;
+    }
+
+    .nike-logo {
+        height: 65px;
+    }
+
+    .samsung-logo {
+        height: 28px;
     }
 
     .navigation {
@@ -365,6 +760,20 @@ body {
 
     .qr-container-starbucks {
         left: 8%;
+    }
+
+    .qr-container-falabella {
+        left: 6%;
+        bottom: 12%;
+    }
+
+    .qr-container-nike {
+        left: 50%;
+        top: 50%;
+    }
+
+    .qr-container-samsung {
+        left: 6%;
     }
 
     .qr-code {
@@ -405,7 +814,7 @@ body {
 
 /* Tablets Portrait */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    .header-lego, .header-starbucks {
+    .header-lego, .header-starbucks, .header-falabella, .header-nike, .header-samsung {
         padding: 15px 20px;
     }
 
@@ -468,7 +877,7 @@ body {
 
 /* Tablets Landscape */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    .header-lego, .header-starbucks {
+    .header-lego, .header-starbucks, .header-falabella, .header-nike, .header-samsung {
         padding: 14px 22px;
     }
 
