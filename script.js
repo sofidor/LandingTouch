@@ -125,8 +125,8 @@ function handleMove(e) {
     const deltaY = clientY - startY;
     const screenWidth = window.innerWidth;
     // Calculate translateX: current position + swipe distance as percentage
-    // Each view is 16.67% of viewport, so deltaX/screenWidth gives us the percentage to move
-    const translateX = -(currentView * viewWidth) + (deltaX / screenWidth) * 100;
+    // Make movement slower during drag - divide by 2 to slow it down
+    const translateX = -(currentView * viewWidth) + (deltaX / screenWidth) * 100 / 2;
     
     // Prevent default scrolling - allow horizontal swipe, prevent vertical scroll
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
@@ -162,7 +162,7 @@ function handleEnd(e) {
     isDragging = false;
     touchId = null;
     swipeContainer.style.cursor = '';
-    swipeContainer.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    swipeContainer.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     
     const deltaX = currentX - startX;
     const deltaTime = Date.now() - startTime;
